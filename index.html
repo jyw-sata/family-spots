@@ -162,14 +162,21 @@ select{cursor:pointer}
   <!-- 추천 페이지 -->
   <div class="page active" id="page-recommend">
     <div class="filters">
-      <span class="filter-label">계절</span>
-      <select id="recFilterSeason" onchange="renderRecommend()">
-        <option value="">현재 계절</option>
-        <option value="spring">🌸 봄</option>
-        <option value="summer">☀️ 여름</option>
-        <option value="autumn">🍂 가을</option>
-        <option value="winter">❄️ 겨울</option>
-        <option value="always">🔄 사계절</option>
+      <span class="filter-label">월</span>
+      <select id="recFilterMonth" onchange="renderRecommend()">
+        <option value="">이번 달</option>
+        <option value="1">1월</option>
+        <option value="2">2월</option>
+        <option value="3">3월</option>
+        <option value="4">4월</option>
+        <option value="5">5월</option>
+        <option value="6">6월</option>
+        <option value="7">7월</option>
+        <option value="8">8월</option>
+        <option value="9">9월</option>
+        <option value="10">10월</option>
+        <option value="11">11월</option>
+        <option value="12">12월</option>
       </select>
       <span class="filter-label">카테고리</span>
       <select id="recFilterCat"><option value="">전체</option></select>
@@ -612,22 +619,27 @@ function getAllRegions(){
 }
 
 // === Recommend Page ===
+function monthToSeason(m){
+  if(m>=3&&m<=5) return 'spring';
+  if(m>=6&&m<=8) return 'summer';
+  if(m>=9&&m<=11) return 'autumn';
+  return 'winter';
+}
+function monthName(m){ return m+'월'; }
+
 function renderRecommend(){
-  const selectedSeason=document.getElementById('recFilterSeason').value;
-  const season=selectedSeason||getCurrentSeason();
+  const selectedMonth=document.getElementById('recFilterMonth').value;
+  const month=selectedMonth ? parseInt(selectedMonth) : (new Date().getMonth()+1);
+  const season=monthToSeason(month);
   const cat=document.getElementById('recFilterCat').value;
   const age=document.getElementById('recFilterAge').value;
   const region=document.getElementById('recFilterRegion').value;
   const unvisitedOnly=document.getElementById('recUnvisited').checked;
   const myRegions=getAllRegions();
 
-  // 계절 배지 업데이트
+  // 월 배지 업데이트
   const badge=document.getElementById('seasonBadge');
-  if(selectedSeason){
-    badge.textContent=getSeasonIcon(selectedSeason)+' '+getSeasonName(selectedSeason)+' (미리보기)';
-  } else {
-    badge.textContent=getSeasonIcon(season)+' '+getSeasonName(season)+' · '+(new Date().getMonth()+1)+'월';
-  }
+  badge.textContent=getSeasonIcon(season)+' '+monthName(month)+' ('+getSeasonName(season)+')' + (selectedMonth ? ' 미리보기' : '');
 
   let spots=state.spots.filter(s=>{
     if(region){if(s.region!==region) return false}
