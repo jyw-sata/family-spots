@@ -460,7 +460,19 @@ function getDefaultState(){
 function loadState(){
   try{
     const d=localStorage.getItem('familySpots');
-    if(d) return JSON.parse(d);
+    if(d) {
+      const saved = JSON.parse(d);
+      // 새 기본 장소 머지 (기존에 없는 것만 추가)
+      const existingNames = new Set(saved.spots.map(s=>s.name));
+      const newDefaults = DEFAULT_SPOTS.filter(s=>!existingNames.has(s.name));
+      if(newDefaults.length > 0){
+        newDefaults.forEach((s,i)=>{
+          saved.spots.push({...s, id:'default_new_'+Date.now()+'_'+i, createdAt:Date.now()});
+        });
+        localStorage.setItem('familySpots',JSON.stringify(saved));
+      }
+      return saved;
+    }
   }catch(e){}
   return getDefaultState();
 }
