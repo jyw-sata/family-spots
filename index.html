@@ -325,15 +325,46 @@ const SEASONS = [
 ];
 
 const REGIONS = [
+  // 서울
   '서울 강남구','서울 강동구','서울 강북구','서울 강서구','서울 관악구','서울 광진구',
   '서울 구로구','서울 금천구','서울 노원구','서울 도봉구','서울 동대문구','서울 동작구',
   '서울 마포구','서울 서대문구','서울 서초구','서울 성동구','서울 성북구','서울 송파구',
   '서울 양천구','서울 영등포구','서울 용산구','서울 은평구','서울 종로구','서울 중구','서울 중랑구',
+  // 경기
   '경기 수원','경기 성남','경기 고양','경기 용인','경기 부천','경기 안산','경기 안양',
   '경기 남양주','경기 화성','경기 평택','경기 의정부','경기 시흥','경기 파주','경기 광명',
   '경기 김포','경기 군포','경기 광주','경기 이천','경기 양평','경기 가평','경기 하남',
   '경기 과천','경기 구리','경기 오산','경기 양주','경기 포천','경기 동두천',
-  '인천 중구','인천 동구','인천 미추홀구','인천 연수구','인천 남동구','인천 부평구','인천 계양구','인천 서구','인천 강화군'
+  // 인천
+  '인천 중구','인천 동구','인천 미추홀구','인천 연수구','인천 남동구','인천 부평구','인천 계양구','인천 서구','인천 강화군',
+  // 부산
+  '부산 해운대구','부산 중구','부산 사하구','부산 기장군','부산 수영구','부산 남구','부산 동구','부산 서구','부산 영도구','부산 부산진구','부산 금정구','부산 연제구',
+  // 대구
+  '대구 중구','대구 수성구','대구 달성군','대구 동구','대구 서구','대구 남구','대구 북구','대구 달서구',
+  // 대전
+  '대전 유성구','대전 서구','대전 중구','대전 동구','대전 대덕구',
+  // 광주
+  '광주 북구','광주 동구','광주 서구','광주 남구','광주 광산구',
+  // 울산
+  '울산 중구','울산 남구','울산 동구','울산 북구','울산 울주군',
+  // 세종
+  '세종시',
+  // 제주
+  '제주 제주시','제주 서귀포시',
+  // 강원
+  '강원 춘천','강원 강릉','강원 속초','강원 평창','강원 양양','강원 원주','강원 동해','강원 삼척','강원 태백','강원 홍천','강원 횡성','강원 인제',
+  // 충북
+  '충북 청주','충북 충주','충북 제천','충북 단양','충북 옥천','충북 영동',
+  // 충남
+  '충남 천안','충남 아산','충남 공주','충남 부여','충남 서산','충남 보령','충남 논산','충남 당진',
+  // 전북
+  '전북 전주','전북 군산','전북 익산','전북 남원','전북 정읍','전북 김제','전북 완주','전북 무주',
+  // 전남
+  '전남 여수','전남 순천','전남 목포','전남 광양','전남 나주','전남 담양','전남 해남','전남 완도',
+  // 경북
+  '경북 경주','경북 포항','경북 안동','경북 구미','경북 영주','경북 울릉','경북 청송','경북 영덕',
+  // 경남
+  '경남 창원','경남 거제','경남 통영','경남 진주','경남 김해','경남 양산','경남 밀양','경남 거창','경남 남해','경남 하동'
 ];
 
 const DEFAULT_SPOTS = [
@@ -366,7 +397,32 @@ const DEFAULT_SPOTS = [
   {name:'월미도 놀이공원',region:'인천 중구',category:'activity',ages:['kid','elemlow','elemhigh'],seasons:['spring','summer','autumn'],rating:3,memo:'바이킹, 디스코팡팡 등',visited:false,review:''},
   {name:'서울 북촌한옥마을',region:'서울 종로구',category:'culture',ages:['all'],seasons:['spring','autumn'],rating:4,memo:'전통한옥, 포토존',visited:false,review:''},
   {name:'가평 쁘띠프랑스',region:'경기 가평',category:'culture',ages:['kid','elemlow','elemhigh','all'],seasons:['always'],rating:3,memo:'프랑스 마을 테마파크',visited:false,review:''},
-  {name:'포천 허브아일랜드',region:'경기 포천',category:'park',ages:['all'],seasons:['always'],rating:3,memo:'허브 체험, 불빛동화축제(겨울)',visited:false,review:''}
+  {name:'포천 허브아일랜드',region:'경기 포천',category:'park',ages:['all'],seasons:['always'],rating:3,memo:'허브 체험, 불빛동화축제(겨울)',visited:false,review:''},
+  // 제주
+  {name:'성산일출봉',region:'제주 서귀포시',category:'park',ages:['elemlow','elemhigh','all'],seasons:['always'],rating:5,memo:'유네스코 세계자연유산, 일출 명소',visited:false,review:''},
+  {name:'아쿠아플라넷 제주',region:'제주 서귀포시',category:'culture',ages:['baby','kid','elemlow','elemhigh'],seasons:['always'],rating:4,memo:'아시아 최대 규모 아쿠아리움',visited:false,review:''},
+  {name:'에코랜드 테마파크',region:'제주 제주시',category:'park',ages:['baby','kid','elemlow','elemhigh','all'],seasons:['spring','autumn'],rating:4,memo:'기차 타고 돌아보는 곶자왈 생태공원',visited:false,review:''},
+  {name:'테디베어뮤지엄',region:'제주 서귀포시',category:'culture',ages:['baby','kid','elemlow'],seasons:['always'],rating:3,memo:'테디베어 전시, 포토존',visited:false,review:''},
+  {name:'섭지코지',region:'제주 서귀포시',category:'park',ages:['all'],seasons:['spring','autumn'],rating:4,memo:'해안 절경, 산책로',visited:false,review:''},
+  // 부산
+  {name:'해운대 해수욕장',region:'부산 해운대구',category:'park',ages:['all'],seasons:['summer'],rating:5,memo:'국내 대표 해수욕장',visited:false,review:''},
+  {name:'SEA LIFE 부산아쿠아리움',region:'부산 해운대구',category:'culture',ages:['baby','kid','elemlow','elemhigh'],seasons:['always'],rating:4,memo:'해운대 해변 지하 대형 아쿠아리움',visited:false,review:''},
+  // 강원
+  {name:'레고랜드 코리아',region:'강원 춘천',category:'activity',ages:['kid','elemlow','elemhigh'],seasons:['spring','summer','autumn'],rating:5,memo:'레고 테마파크, 다양한 놀이기구',visited:false,review:''},
+  {name:'알펜시아 리조트',region:'강원 평창',category:'activity',ages:['elemlow','elemhigh','all'],seasons:['winter'],rating:4,memo:'스키, 눈썰매, 겨울 액티비티',visited:false,review:''},
+  {name:'오대산 국립공원',region:'강원 평창',category:'park',ages:['elemlow','elemhigh','all'],seasons:['spring','autumn'],rating:4,memo:'월정사 전나무숲길, 트레킹',visited:false,review:''},
+  // 경주
+  {name:'경주월드 어뮤즈먼트',region:'경북 경주',category:'activity',ages:['kid','elemlow','elemhigh','all'],seasons:['always'],rating:4,memo:'놀이공원, 워터파크 겸비',visited:false,review:''},
+  {name:'불국사',region:'경북 경주',category:'culture',ages:['elemlow','elemhigh','all'],seasons:['spring','autumn'],rating:5,memo:'유네스코 세계문화유산, 신라 천년의 역사',visited:false,review:''},
+  {name:'첨성대',region:'경북 경주',category:'culture',ages:['elemlow','elemhigh','all'],seasons:['always'],rating:4,memo:'신라시대 천문관측대, 야간 조명',visited:false,review:''},
+  // 전주
+  {name:'전주 한옥마을',region:'전북 전주',category:'culture',ages:['all'],seasons:['spring','autumn'],rating:5,memo:'한복체험, 전통먹거리, 한옥 숙박',visited:false,review:''},
+  // 여수
+  {name:'아쿠아플라넷 여수',region:'전남 여수',category:'culture',ages:['baby','kid','elemlow','elemhigh'],seasons:['always'],rating:4,memo:'벨루가 쇼, 대형 아쿠아리움',visited:false,review:''},
+  {name:'여수 해상케이블카',region:'전남 여수',category:'activity',ages:['kid','elemlow','elemhigh','all'],seasons:['always'],rating:4,memo:'바다 위 케이블카, 크리스탈 캐빈',visited:false,review:''},
+  // 통영
+  {name:'통영 케이블카',region:'경남 통영',category:'activity',ages:['kid','elemlow','elemhigh','all'],seasons:['always'],rating:4,memo:'한려수도 조망, 미륵산 정상',visited:false,review:''},
+  {name:'스카이라인 루지 통영',region:'경남 통영',category:'activity',ages:['kid','elemlow','elemhigh'],seasons:['spring','summer','autumn'],rating:4,memo:'경사면 카트 체험, 바다 전망',visited:false,review:''}
 ];
 
 // === State ===
