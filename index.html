@@ -162,6 +162,15 @@ select{cursor:pointer}
   <!-- 추천 페이지 -->
   <div class="page active" id="page-recommend">
     <div class="filters">
+      <span class="filter-label">계절</span>
+      <select id="recFilterSeason" onchange="renderRecommend()">
+        <option value="">현재 계절</option>
+        <option value="spring">🌸 봄</option>
+        <option value="summer">☀️ 여름</option>
+        <option value="autumn">🍂 가을</option>
+        <option value="winter">❄️ 겨울</option>
+        <option value="always">🔄 사계절</option>
+      </select>
       <span class="filter-label">카테고리</span>
       <select id="recFilterCat"><option value="">전체</option></select>
       <span class="filter-label">연령</span>
@@ -604,12 +613,21 @@ function getAllRegions(){
 
 // === Recommend Page ===
 function renderRecommend(){
-  const season=getCurrentSeason();
+  const selectedSeason=document.getElementById('recFilterSeason').value;
+  const season=selectedSeason||getCurrentSeason();
   const cat=document.getElementById('recFilterCat').value;
   const age=document.getElementById('recFilterAge').value;
   const region=document.getElementById('recFilterRegion').value;
   const unvisitedOnly=document.getElementById('recUnvisited').checked;
   const myRegions=getAllRegions();
+
+  // 계절 배지 업데이트
+  const badge=document.getElementById('seasonBadge');
+  if(selectedSeason){
+    badge.textContent=getSeasonIcon(selectedSeason)+' '+getSeasonName(selectedSeason)+' (미리보기)';
+  } else {
+    badge.textContent=getSeasonIcon(season)+' '+getSeasonName(season)+' · '+(new Date().getMonth()+1)+'월';
+  }
 
   let spots=state.spots.filter(s=>{
     if(region){if(s.region!==region) return false}
